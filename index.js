@@ -7,18 +7,17 @@ const port = 3000;
 app.use(express.static(path.join(import.meta.dirname, "public")));
 
 
-app.get("/", (req, res) => {
-	res.sendFile(path.join(import.meta.dirname, "public", "home.html"));
-});
+// app.get("/", (req, res) => {
+// 	res.sendFile(path.join(import.meta.dirname, "public", "index.html"));
+// });
 
 
 // Write your code here:
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.get("/", (req, res) => {
+    const data = { username: "Jose D." };
+    res.render("home.ejs", data);
 });
-
-//
 
 app.get('/home', (req, res) => {
     const data = { username: "Jose D."}
@@ -26,9 +25,15 @@ app.get('/home', (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-	res.render('about.ejs')
+	res.render('about.ejs');
 });
 
 app.get("/contact", (req, res) => {
 	res.render('contact.ejs');
+});
+
+
+//Begin LocalHost
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
